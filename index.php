@@ -38,9 +38,9 @@
         <!-- Masthead-->
         <header class="masthead">
             <div class="container">
-                <div class="masthead-subheading">Bienvenuehh</div>
-                <div class="masthead-heading text-uppercase">Mr7ba bikom hh</div>
-                <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#services">golia ktr</a>
+                <div class="masthead-subheading">Bienvenue</div>
+                <div class="masthead-heading text-uppercase">Reservation Hotel</div>
+                <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#services">Commencer!</a>
             </div>
         </header>
         <!-- Services-->
@@ -48,7 +48,7 @@
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">Services</h2>
-                    <h3 class="section-subheading text-muted">Notre services</h3>
+                    <h3 class="section-subheading text-muted">Nos services</h3>
                 </div>
                 <div class="row text-center">
                     <div class="col-md-4">
@@ -57,7 +57,7 @@
                             <i class="fas fa-hotel fa-stack-1x fa-inverse"></i>
                         </span>
                         <h4 class="my-3">Accueil 24/24</h4>
-                        <p class="text-muted">La reception de l’hôtel Au Patio Morand est ouverte 24h/24, tous les jours de la semaine. Dès votre arrivée, notre équipe sera à votre écoute afin de rendre votre séjour des plus agréables.</p>
+                        <p class="text-muted">La reception de l’hôtel est ouverte 24h/24, tous les jours de la semaine. Dès votre arrivée, notre équipe sera à votre écoute afin de rendre votre séjour des plus agréables.</p>
                     </div>
                     <div class="col-md-4">
                         <span class="fa-stack fa-4x">
@@ -141,7 +141,7 @@
         <section class="page-section" id="contact">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="section-heading text-uppercase">Contact Us</h2>
+                    <h2 class="section-heading text-uppercase">Contactez nous</h2>
                     <br />
                     <br />
                 </div>
@@ -179,7 +179,7 @@
         <footer class="footer py-4">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-lg-4 text-lg-left">Copyright © ENS MARRAKECH</div>
+                    <div class="col-lg-4 text-lg-left">Copyright © Ens Marrakech 2020</div>
                     <div class="col-lg-4 my-3 my-lg-0">
                         <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
                         <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
