@@ -17,7 +17,6 @@
         <link href="css/styles.css" rel="stylesheet" />
     </head>
     <body id="page-top">
-        <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
             <div class="container">
                 <a class="navbar-brand js-scroll-trigger" href="index.php#page-top">Accueil</a>
@@ -35,14 +34,12 @@
                 </div>
             </div>
         </nav>
-         <!-- Masthead-->
          <header class="masthead">
             <div class="container">
                 <div class="masthead-subheading"></div>
                 <div class="masthead-heading text-uppercase"></div>
             </div>
         </header>
-                <!-- Portfolio Grid-->
                 <section class="page-section bg-light" id="portfolio">
             <div class="container">
                 <div class="text-center">
@@ -75,7 +72,6 @@
                 </div>
             </div>
         </section>
-               <!-- Footer-->
                <footer class="footer py-4">
             <div class="container">
                 <div class="row align-items-center">
@@ -91,9 +87,6 @@
                     </div>
                 </div>
             </div>
-        </footer>
-        <!-- Portfolio Modals-->
-        <!-- Modal 1-->
         <?php
            require_once "admin/connect.php";
            $query = $conn->query("SELECT * FROM `chambre` ORDER BY `prix` ASC") or die(mysql_error());
@@ -107,7 +100,6 @@
                         <div class="row justify-content-center">
                             <div class="col-lg-8">
                                 <div class="modal-body">
-                                    <!-- Project Details Go Here-->
                                     <h2 class="text-uppercase"><?php echo $fetch['type'] ?></h2>
                                     <img class="img-fluid d-block mx-auto" src="assets/img/chambres/<?php echo $fetch['photo']?>" alt="" />
                                     <p><?php echo $fetch['description'] ?></p>
@@ -133,7 +125,7 @@
         <?php
            }
         ?>
-                <!-- Bootstrap core JS-->
+        <!-- Bootstrap core JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Third party plugin JS-->

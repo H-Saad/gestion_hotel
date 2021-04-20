@@ -17,7 +17,6 @@
         <link href="css/styles.css" rel="stylesheet" />
     </head>
     <body id="page-top">
-        <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
             <div class="container">
                 <a class="navbar-brand js-scroll-trigger" href="index.php#page-top">Accueil</a>
@@ -35,40 +34,110 @@
                 </div>
             </div>
         </nav>
-         <!-- Masthead-->
-         <header class="masthead">
+        <header class="masthead">
             <div class="container">
-                <div class="masthead-subheading"></div>
-                <div class="masthead-heading text-uppercase"></div>
+                <div class="masthead-subheading">Formulaire de reservation:</div>
+                <div class="masthead-heading text-uppercase">
+                    <?php 
+                        require_once "admin/connect.php";
+                        $id = $_REQUEST['id_chambre'];
+                        $v = $conn->query("SELECT `type` FROM `chambre` WHERE `id_chambre` = '$id'");
+                        $res = $v->fetch_array();
+                        echo $res['type'];
+                    ?>
+                 </div>
             </div>
         </header>
+        <?php 
+			require_once 'admin/connect.php';
+			$query = $conn->query("SELECT * FROM `chambre` WHERE `id_chambre` = '$_REQUEST[id_chambre]'") or die(mysql_error());
+			$fetch = $query->fetch_array();
+		?>
         <section class="page-section" id="services">
         <div class="container">
         <form method = "POST" enctype = "multipart/form-data">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
             <div class="form-group">
             <label for="Nom">Nom:</label>
-            <input type="text" class="form-control" id="nom" placeholder="Entrer votre nom" name="nom">
+            <input type="text" class="form-control" id="nom" placeholder="Entrer votre nom" name="nom" value="<?php if(isset($_POST['submit'])){echo $_POST['nom'];}?>">
             </div>
             <div class="form-group">
             <label for="prenom">Prenom:</label>
-            <input type="text" class="form-control" id="prenomo" placeholder="Entrer votre prenom" name="prenom">
+            <input type="text" class="form-control" id="prenom" placeholder="Entrer votre prenom" name="prenom" value="<?php if(isset($_POST['submit'])){echo $_POST['prenom'];}?>">
             </div>
             <div class="form-group">
             <label for="adresse">Adresse:</label>
-            <input type="text" class="form-control" id="adresse" placeholder="Entrer votre adresse" name="adresse">
+            <input type="text" class="form-control" id="adresse" placeholder="Entrer votre adresse" name="adresse" value="<?php if(isset($_POST['submit'])){echo $_POST['adresse'];}?>">
+            </div>
+            <div class="form-group">
+            <label for="adresse">Numero de tel:</label>
+            <input type="text" class="form-control" id="num" placeholder="Entrer votre numero de tel" name="num" value="<?php if(isset($_POST['submit'])){echo $_POST['num'];}?>">
             </div>
             <div class="form-group">
             <label for="email">Email:</label>
-            <input type="email" class="form-control" id="email" placeholder="Entrer votre email" name="email">
+            <input type="email" class="form-control" id="email" placeholder="Entrer votre email" name="email" value="<?php if(isset($_POST['submit'])){echo $_POST['email'];}?>">
             </div>
-            <div class="form-group">
-            <label for="pwd">Password:</label>
-            <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
-            </div>
-            <div class="checkbox">
-            <label><input type="checkbox" name="remember"> Remember me</label>
-            </div>
-            <button type="submit" class="btn btn-default">Submit</button>
+            <div class = "form-group">
+			<label>Check in</label>
+			<input type = "date" class = "form-control" name = "checkin" required = "required" />
+		    </div>
+		    <div class = "form-group">
+			<label>Check out</label>
+			<input type = "date" class = "form-control" name = "checkout" required = "required" />
+		    </div>
+            <div class = "form-group">
+                <label>Methode de paiement:</label> <br>
+                <label class="radio-inline"><input type="radio" name="paiement" value = "oui" checked>Paiement en ligne</label>
+                <label class="radio-inline"><input type="radio" name="paiement" value = "non">Paiement a l'hotel</label>
+		    </div>
+            <div class = "form-group" id="optional">
+                <label>Date de rendez-vous</label>
+                <input type = "date" class = "form-control" name = "rdv" />
+		    </div>
+            <script>
+                $('input[name="paiement"]').click(function(e) {
+                if(e.target.value === 'non') {
+                    $('#optional').show();
+                } else {
+                    $('#optional').hide();
+                }
+                })
+
+                $('#optional').hide();
+            </script>
+            <button type="submit" name="submit" class="btn btn-success">Envoyer</button>
+            <button type="reset" class="btn btn-danger">Effacer</button>
+            <div class = "col-md-4"></div>
+				<?php require_once 'query.php';?>
+			</div>
         </form>
 </div>
 </section>
+ <footer class="footer py-4">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-4 text-lg-left">Copyright © Ens Marrakech 2020</div>
+                    <div class="col-lg-4 my-3 my-lg-0">
+                        <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <div class="col-lg-4 text-lg-right">
+                        <a class="mr-3" href="#!">Privacy Policy</a>
+                        <a href="#!">Terms of Use</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Third party plugin JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+        <!-- Contact form JS-->
+        <script src="assets/mail/jqBootstrapValidation.js"></script>
+        <script src="assets/mail/contact_me.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>
