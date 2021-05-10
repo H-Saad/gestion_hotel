@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Hotel</title>
+        <title>Inscription</title>
         <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
@@ -47,61 +47,50 @@
         </nav>
         <header class="masthead">
             <div class="container">
-                <div class="masthead-subheading">Formulaire de reservation:</div>
-                <div class="masthead-heading text-uppercase">
-                    <?php 
-                        require_once "admin/connect.php";
-                        $id = $_REQUEST['id_chambre'];
-                        $v = $conn->query("SELECT `type` FROM `chambre` WHERE `id_chambre` = '$id'");
-                        $res = $v->fetch_array();
-                        echo $res['type'];
-                    ?>
-                 </div>
-            </div>
+                <div class="masthead-heading text-uppercase">Inscription:</div>
         </header>
-        <?php 
-			require_once 'admin/connect.php';
-			$query = $conn->query("SELECT * FROM `chambre` WHERE `id_chambre` = '$_REQUEST[id_chambre]'") or die(mysql_error());
-			$fetch = $query->fetch_array();
-		?>
         <section class="page-section" id="services">
         <div class="container">
-        <form method = "POST" enctype = "multipart/form-data">
+        <form method = "POST" enctype = "multipart/form-data" action="login/reg.php">
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
-            <div class = "form-group">
-			<label>Check in</label>
-			<input type = "date" class = "form-control" name = "checkin" required = "required" />
-		    </div>
-		    <div class = "form-group">
-			<label>Check out</label>
-			<input type = "date" class = "form-control" name = "checkout" required = "required" />
-		    </div>
-            <div class = "form-group">
-                <label>Methode de paiement:</label> <br>
-                <label class="radio-inline"><input type="radio" name="paiement" value = "oui" checked>Paiement en ligne</label>
-                <label class="radio-inline"><input type="radio" name="paiement" value = "non">Paiement a l'hotel</label>
-		    </div>
-            <div class = "form-group" id="optional">
-                <label>Date de rendez-vous</label>
-                <input type = "date" class = "form-control" name = "rdv" />
-		    </div>
-            <script>
-                $('input[name="paiement"]').click(function(e) {
-                if(e.target.value === 'non') {
-                    $('#optional').show();
-                } else {
-                    $('#optional').hide();
-                }
-                })
-
-                $('#optional').hide();
-            </script>
-            <button type="submit" name="submit" class="btn btn-success">Envoyer</button>
+            <div class="form-group">
+            <label for="Nom">Username:</label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Entrer votre nom d'utilisateur" required>
+            </div>
+            <div class="form-group">
+            <label for="prenom">Password:</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Entrer votre mot de passe" required>
+            </div>
+            <div class="form-group">
+            <label for="Nom">Nom:</label>
+            <input type="text" class="form-control" id="nom" placeholder="Entrer votre nom" name="nom" value="<?php if(isset($_POST['submit'])){echo $_POST['nom'];}?>" required>
+            </div>
+            <div class="form-group">
+            <label for="prenom">Prenom:</label>
+            <input type="text" class="form-control" id="prenom" placeholder="Entrer votre prenom" name="prenom" value="<?php if(isset($_POST['submit'])){echo $_POST['prenom'];}?>" required>
+            </div>
+            <div class="form-group">
+            <label for="adresse">Adresse:</label>
+            <input type="text" class="form-control" id="adresse" placeholder="Entrer votre adresse" name="adresse" value="<?php if(isset($_POST['submit'])){echo $_POST['adresse'];}?>" required>
+            </div>
+            <div class="form-group">
+            <label for="adresse">Numero de tel:</label>
+            <input type="text" class="form-control" id="num" placeholder="Entrer votre numero de tel" name="num" value="<?php if(isset($_POST['submit'])){echo $_POST['num'];}?>" required>
+            </div>
+            <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="email" placeholder="Entrer votre email" name="email" value="<?php if(isset($_POST['submit'])){echo $_POST['email'];}?>" required>
+            </div>
+            <button type="submit" name="submit" class="btn btn-success">S'inscrire</button>
             <button type="reset" class="btn btn-danger">Effacer</button>
-            <div class = "col-md-4"></div>
-				<?php require_once 'query.php';?>
-			</div>
         </form>
+            <?php
+                if(isset($_GET['error'])){
+                    if($_GET['error']=='exists'){
+                        echo '<script>alert("Username existe deja!")</script>';
+                    }
+                }
+		    ?>
 </div>
 </section>
  <footer class="footer py-4">

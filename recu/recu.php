@@ -84,7 +84,7 @@ $html = <<<EOD
 </table>
 <br>
 <p>Date de confirmation (paiement a l'hotel): $date_rdv</p>
-<p>Total: $addition</p>
+<p>Total: $addition DH</p>
 EOD;
 
 $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);

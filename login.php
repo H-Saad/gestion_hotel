@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Hotel</title>
+        <title>Connection</title>
         <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
@@ -47,61 +47,42 @@
         </nav>
         <header class="masthead">
             <div class="container">
-                <div class="masthead-subheading">Formulaire de reservation:</div>
-                <div class="masthead-heading text-uppercase">
-                    <?php 
-                        require_once "admin/connect.php";
-                        $id = $_REQUEST['id_chambre'];
-                        $v = $conn->query("SELECT `type` FROM `chambre` WHERE `id_chambre` = '$id'");
-                        $res = $v->fetch_array();
-                        echo $res['type'];
-                    ?>
-                 </div>
-            </div>
+                <div class="masthead-heading text-uppercase">Connection:</div>
         </header>
-        <?php 
-			require_once 'admin/connect.php';
-			$query = $conn->query("SELECT * FROM `chambre` WHERE `id_chambre` = '$_REQUEST[id_chambre]'") or die(mysql_error());
-			$fetch = $query->fetch_array();
-		?>
         <section class="page-section" id="services">
         <div class="container">
-        <form method = "POST" enctype = "multipart/form-data">
+        <?php
+            if(isset($_GET['succes'])){
+                echo "<p style='color:green;'>Inscription reussite veuillez vous connecter!</p>";
+                echo "<br>";
+            }
+            if(isset($_GET['conn'])){
+                echo "<p style='color:red;'>Veuillez vous connecter!</p>";
+                echo "<br>";
+            }
+        ?>
+        <form method = "POST" enctype = "multipart/form-data" action="login/log.php">
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
-            <div class = "form-group">
-			<label>Check in</label>
-			<input type = "date" class = "form-control" name = "checkin" required = "required" />
-		    </div>
-		    <div class = "form-group">
-			<label>Check out</label>
-			<input type = "date" class = "form-control" name = "checkout" required = "required" />
-		    </div>
-            <div class = "form-group">
-                <label>Methode de paiement:</label> <br>
-                <label class="radio-inline"><input type="radio" name="paiement" value = "oui" checked>Paiement en ligne</label>
-                <label class="radio-inline"><input type="radio" name="paiement" value = "non">Paiement a l'hotel</label>
-		    </div>
-            <div class = "form-group" id="optional">
-                <label>Date de rendez-vous</label>
-                <input type = "date" class = "form-control" name = "rdv" />
-		    </div>
-            <script>
-                $('input[name="paiement"]').click(function(e) {
-                if(e.target.value === 'non') {
-                    $('#optional').show();
-                } else {
-                    $('#optional').hide();
-                }
-                })
-
-                $('#optional').hide();
-            </script>
-            <button type="submit" name="submit" class="btn btn-success">Envoyer</button>
-            <button type="reset" class="btn btn-danger">Effacer</button>
-            <div class = "col-md-4"></div>
-				<?php require_once 'query.php';?>
-			</div>
+            <div class="form-group">
+            <label for="Nom">Username:</label>
+            <input type="text" class="form-control" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+            <label for="prenom">Password:</label>
+            <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <button type="submit" name="submit" class="btn btn-success">Connection</button>
         </form>
+            <br>
+            <p>Pas de compte? Inscrivez vous!</p>
+            <button onclick="window.location = 'register.php'" class="btn btn-warning">Inscription</button>
+            <?php
+                if(isset($_GET['error'])){
+                    if($_GET['error']=='invalid'){
+                        echo '<script>alert("Username ou password incorrect!")</script>';
+                    }
+                }
+		    ?>
 </div>
 </section>
  <footer class="footer py-4">

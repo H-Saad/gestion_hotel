@@ -2,11 +2,7 @@
 	require_once 'admin/connect.php';
 	if(ISSET($_POST['submit'])){
 		$id_chambre = $_REQUEST['id_chambre'];
-		$nom = $_POST['nom'];
-		$prenom = $_POST['prenom'];
-		$adresse = $_POST['adresse'];
-        $num = $_POST['num'];
-        $email = $_POST['email'];
+		$usr_id = $_SESSION['id'];
 		$checkin = $_POST['checkin'];
 		$checkout = $_POST['checkout'];
         $paiement = $_POST['paiement'];
@@ -22,8 +18,7 @@
 		if($checkin < date("Y-m-d", strtotime('+8 HOURS'))){	
 				echo "<script>alert('Date invalide')</script>";
 			}else{
-				$conn->query("INSERT INTO `users` (nom, prenom, adresse, email, num) VALUES('$nom', '$prenom', '$adresse', '$email', '$num')") or die(mysqli_error());
-				$query = $conn->query("SELECT * FROM `users` WHERE `nom` = '$nom' && `prenom` = '$prenom' && `adresse` = '$adresse' && `num` = '$num'") or die(mysqli_error());
+				$query = $conn->query("SELECT * FROM `users` WHERE `user_id` = '$usr_id'") or die(mysqli_error());
 				$fetch = $query->fetch_array();
 				if($row > 0){
 					echo "<div class = 'col-md-4'>
@@ -38,14 +33,14 @@
 							}
 						"</div>";
 				}else{	
-                        if($user_id = $fetch['user_id']){
+                        if($usr_id = $fetch['user_id']){
 						$bill = $price * $days;
 						if($_POST['rdv']==''){
-							$conn->query("INSERT INTO `transaction`(user_id, id_chambre, status, jours, paiement, checkin, checkout, addition) VALUES('$user_id', '$id_chambre', 'En attente', '$days', '$paiement', '$checkin', '$checkout', '$bill')") or die(mysqli_error($conn));
+							$conn->query("INSERT INTO `transaction`(user_id, id_chambre, status, jours, paiement, checkin, checkout, addition) VALUES('$usr_id', '$id_chambre', 'En attente', '$days', '$paiement', '$checkin', '$checkout', '$bill')") or die(mysqli_error($conn));
 						}else{
-							$conn->query("INSERT INTO `transaction`(user_id, id_chambre, status, jours, paiement, checkin, checkout, date_rdv, addition) VALUES('$user_id', '$id_chambre', 'En attente', '$days', '$paiement', '$checkin', '$checkout', '$date_rdv', '$bill')") or die(mysqli_error($conn));
+							$conn->query("INSERT INTO `transaction`(user_id, id_chambre, status, jours, paiement, checkin, checkout, date_rdv, addition) VALUES('$usr_id', '$id_chambre', 'En attente', '$days', '$paiement', '$checkin', '$checkout', '$date_rdv', '$bill')") or die(mysqli_error($conn));
 						}
-						$q = $conn->query("SELECT * FROM `transaction` WHERE `user_id` = '$user_id' && `id_chambre` = '$id_chambre' && `status` = 'En attente' && `jours` = '$days' && `paiement` = '$paiement' && `checkin` = '$checkin' && `checkout` = '$checkout' && `addition` = '$bill'");
+						$q = $conn->query("SELECT * FROM `transaction` WHERE `user_id` = '$usr_id' && `id_chambre` = '$id_chambre' && `status` = 'En attente' && `jours` = '$days' && `paiement` = '$paiement' && `checkin` = '$checkin' && `checkout` = '$checkout' && `addition` = '$bill'");
 						$q = $q->fetch_array();
 						$trans_id = $q['transaction_id'];
 						echo("<script>location.href = 'recu/recu.php?transaction_id=$trans_id';</script>");

@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Hotel</title>
+        <title>Chambres</title>
         <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
@@ -17,19 +17,30 @@
         <link href="css/styles.css" rel="stylesheet" />
     </head>
     <body id="page-top">
+        <?php session_start(); ?>
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand js-scroll-trigger" href="index.php#page-top">Accueil</a>
+                <a class="navbar-brand js-scroll-trigger" href="index.php">Accueil</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars ml-1"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ml-auto">
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="index.php#services">Services</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services">Services</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="chambres.php">Chambres</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="index.php#about">About</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="index.php#contact">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Contact</a></li>
+                        <?php
+                            if(!isset($_SESSION['id'])){
+                                echo '<li class="nav-item"><a class="nav-link js-scroll-trigger" href="login.php">Connectez-vous !</a></li>';
+                            }
+                            else{
+                                $prenom = $_SESSION['prenom'];
+                                echo '<li class="nav-item"><a class="nav-link js-scroll-trigger">'. $prenom. '</a></li>';
+                                echo '<li class="nav-item"><a class="nav-link js-scroll-trigger" href="login/logout.php">Deconnexion</a></li>';
+                            }
+                        ?>
                     </ul>
                 </div>
             </div>
@@ -107,7 +118,14 @@
                                         <li>Nombre de personnes: 2</li>
                                         <li>Balcon: Oui</li>
                                     </ul>
-                                    <button class="btn btn-success"  type="button" onClick="document.location.href='reservation.php?id_chambre=<?php echo $fetch['id_chambre'] ?>'">
+                                    
+                                    <button class="btn btn-success"  type="button" onClick=
+                                    <?php
+                                        $id_chamb = $fetch['id_chambre'];
+                                        if(isset($_SESSION['id']))
+                                        {echo "document.location.href='reservation.php?id_chambre=$id_chamb'";}
+                                        else{echo "document.location.href='login.php?conn=non'";}
+                                    ?>>
                                         <i class="fas fa-times mr-1"></i>
                                         Reserver
                                     </button>

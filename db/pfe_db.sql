@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Apr 18, 2021 at 05:18 PM
+-- Generation Time: May 10, 2021 at 05:39 PM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -102,6 +102,8 @@ CREATE TABLE IF NOT EXISTS `transaction` (
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `user_id` int(10) NOT NULL AUTO_INCREMENT,
+  `username` varchar(32) NOT NULL,
+  `password` varchar(32) NOT NULL,
   `Nom` varchar(32) NOT NULL,
   `Prenom` varchar(32) NOT NULL,
   `Adresse` varchar(60) NOT NULL,
