@@ -2,4 +2,10 @@
 PFE dut info
 
 
-Creer une base de donnees nommee pfe_db et importer le fichier pfe_db.sql present dans le dossier db
+Pour utiliser le code veuillez creer une base de donner nomee : pfe_sql dans phpmyadmin et importer 
+la base de donnee fourni.
+
+
+CAPTURES D'ECRAN:
+
+![alt text](https://github.com/H-Saad/gestion_hotel/blob/main/assets/img/chambres/1.jpg?raw=true)
