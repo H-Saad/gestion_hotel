@@ -37,7 +37,7 @@
                             }
                             else{
                                 $prenom = $_SESSION['prenom'];
-                                echo '<li class="nav-item"><a class="nav-link js-scroll-trigger">'. $prenom. '</a></li>';
+                                echo '<li class="nav-item"><a class="nav-link js-scroll-trigger" href = "login/user_info.php">'. $prenom. '</a></li>';
                                 echo '<li class="nav-item"><a class="nav-link js-scroll-trigger" href="login/logout.php">Deconnexion</a></li>';
                             }
                         ?>

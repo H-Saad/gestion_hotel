@@ -27,17 +27,17 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ml-auto">
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services">Services</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="index.php#services">Services</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="chambres.php">Chambres</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="index.php#about">About</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="index.php#contact">Contact</a></li>
                         <?php
                             if(!isset($_SESSION['id'])){
                                 echo '<li class="nav-item"><a class="nav-link js-scroll-trigger" href="login.php">Connectez-vous !</a></li>';
                             }
                             else{
                                 $prenom = $_SESSION['prenom'];
-                                echo '<li class="nav-item"><a class="nav-link js-scroll-trigger">'. $prenom. '</a></li>';
+                                echo '<li class="nav-item"><a class="nav-link js-scroll-trigger" href="login/user_info.php">'. $prenom. '</a></li>';
                                 echo '<li class="nav-item"><a class="nav-link js-scroll-trigger" href="login/logout.php">Deconnexion</a></li>';
                             }
                         ?>
@@ -64,11 +64,11 @@
         <form method = "POST" enctype = "multipart/form-data" action="login/log.php">
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
             <div class="form-group">
-            <label for="Nom">Username:</label>
+            <label for="Nom">Nom d'utilisateur:</label>
             <input type="text" class="form-control" id="username" name="username" required>
             </div>
             <div class="form-group">
-            <label for="prenom">Password:</label>
+            <label for="prenom">Mot de passe:</label>
             <input type="password" class="form-control" id="password" name="password" required>
             </div>
             <button type="submit" name="submit" class="btn btn-success">Connection</button>
