@@ -57,7 +57,17 @@
 							<td><?php echo $fetch['login']?></td>
 							<td><?php echo $fetch['nom']?></td>
                             <td><?php echo $fetch['pass']?></td>
-							<td><center><a class = "btn btn-warning" href = "modifier_admin.php?admin_id=<?php echo $fetch['admin_id']?>">Modifier</a> <a class = "btn btn-danger" onclick = "confirmationDelete(this); return false;" href = "query/supr_admin.php?admin_id=<?php echo $fetch['admin_id']?>">Supprimer</a></center></td>
+                            <?php
+                                if($_SESSION['admin']==$fetch['admin_id']){
+                            ?>
+							<td><center><a class = "btn btn-warning" href = "modifier_admin.php">Modifier</a> <a class = "btn btn-danger" onclick = "confirmationDelete(this); return false;" href = "query/supr_admin.php?admin_id=<?php echo $fetch['admin_id']?>">Supprimer</a></center></td>
+                            <?php
+                                }else{
+                            ?>
+                            <td><center><a class = "btn btn-warning disabled" href = "modifier_admin.php">Modifier</a> <a class = "btn btn-danger disabled" onclick = "confirmationDelete(this); return false;" href = "query/supr_admin.php?admin_id=<?php echo $fetch['admin_id']?>">Supprimer</a></center></td>
+                            <?php
+                                }
+                            ?>
 						</tr>
 						<?php
 							}

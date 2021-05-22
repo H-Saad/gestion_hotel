@@ -4,7 +4,7 @@
         $password = md5($_POST['password']);
         $nom = $_POST['nom'];
         
-        $conn->query("UPDATE `admin` SET `login` = '$username',`pass` = '$password',`nom` = '$nom' WHERE `admin_id` = '$_REQUEST[admin_id]'") or die(mysqli_error($conn));
+        $conn->query("UPDATE `admin` SET `login` = '$username',`pass` = '$password',`nom` = '$nom' WHERE `admin_id` = '$_SESSION[admin]'") or die(mysqli_error($conn));
 
         header("Location: admins.php");
     }

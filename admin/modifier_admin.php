@@ -36,7 +36,7 @@
 			<div class = "panel-body">
 				<div class = "alert alert-info">Modifier compte</div>
 				<?php
-					$query = $conn->query("SELECT * FROM `admin` WHERE `admin_id` = '$_REQUEST[admin_id]'") or die(mysqli_error());
+					$query = $conn->query("SELECT * FROM `admin` WHERE `admin_id` = '$_SESSION[admin]'") or die(mysqli_error());
 					$fetch = $query->fetch_array();
 				?>
 				<br />
