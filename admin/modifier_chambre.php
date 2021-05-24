@@ -16,6 +16,7 @@
         <?php 
             require_once "valider.php";
             require_once "connect.php";
+			require "check.php";
         ?>
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
@@ -46,12 +47,20 @@
 					?>
 					<form method = "POST" enctype = "multipart/form-data">
 						<div class = "form-group">
-							<label>Room Type </label>
+							<label>Type de chambre </label>
 							<input type="text" name="type" class="form-control" value=<?php echo $fetch['type']; ?>>
 						</div>
 						<div class = "form-group">
-							<label>Price </label>
+							<label>Prix </label>
 							<input type = "number" value = "<?php echo $fetch['prix']?>" class = "form-control" name = "prix" />
+						</div>
+						<div class = "form-group">
+							<label>Nb de chambres totals:</label>
+							<input type = "number" value = "<?php echo $fetch['nb_chambres_total']?>" class = "form-control" name = "nb_chambres_t" />
+						</div>
+						<div class = "form-group">
+							<label>Nb de chambres dispo:</label>
+							<input type = "number" value = "<?php echo $fetch['nb_chambres']?>" class = "form-control" name = "nb_chambres_d" />
 						</div>
                         <div class="form-group">
                             <label>Description: </label>

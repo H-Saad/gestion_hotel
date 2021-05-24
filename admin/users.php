@@ -51,7 +51,7 @@
 					</thead>
 					<tbody>
 						<?php  
-							$query = $conn->query("SELECT * FROM `users`") or die(mysqli_error());
+							$query = $conn->query("SELECT * FROM `users` WHERE username IS NOT NULL") or die(mysqli_error());
 							while($fetch = $query->fetch_array()){
 						?>
 						<tr>

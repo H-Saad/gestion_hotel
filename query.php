@@ -10,7 +10,7 @@
 		$date1 = new DateTime($_POST['checkin']);
 		$date2 = new DateTime($_POST['checkout']);
 		$days = $date2->diff($date1)->format("%a");
-		$query2 = $conn->query("SELECT * FROM `transaction` WHERE `checkin` = '$checkin' && `id_chambre` = '$id_chambre' && `status` = 'En atttente'") or die(mysqli_error());
+		$query2 = $conn->query("SELECT * FROM `transaction` WHERE `checkin` = '$checkin' && `id_chambre` = '$id_chambre' && `status` = 'En attente'") or die(mysqli_error());
 		$query3 = $conn->query("SELECT `prix` FROM `chambre` WHERE `id_chambre` = '$id_chambre'") or die(mysqli_error($conn));
 		$row = $query2->num_rows;
 		$res = $query3->fetch_array();
@@ -37,6 +37,7 @@
 						$bill = $price * $days;
 						if($_POST['rdv']==''){
 							$conn->query("INSERT INTO `transaction`(user_id, id_chambre, status, jours, paiement, checkin, checkout, addition) VALUES('$usr_id', '$id_chambre', 'En attente', '$days', '$paiement', '$checkin', '$checkout', '$bill')") or die(mysqli_error($conn));
+							$conn->query("UPDATE `chambre` SET nb_chambres = nb_chambres - 1 WHERE id_chambre = '$id_chambre'");
 						}else{
 							$conn->query("INSERT INTO `transaction`(user_id, id_chambre, status, jours, paiement, checkin, checkout, date_rdv, addition) VALUES('$usr_id', '$id_chambre', 'En attente', '$days', '$paiement', '$checkin', '$checkout', '$date_rdv', '$bill')") or die(mysqli_error($conn));
 						}

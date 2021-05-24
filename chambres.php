@@ -13,6 +13,10 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
         <link href="css/styles.css" rel="stylesheet" />
     </head>
+    <?php
+        require_once "admin/connect.php";
+        require "admin/check.php";
+    ?>
     <body id="page-top">
         <?php session_start(); ?>
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
@@ -87,7 +91,7 @@
                <footer class="footer py-4">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-lg-4 text-lg-left">Copyright © Ens Marrakech 2020</div>
+                    <div class="col-lg-4 text-lg-left">Copyright © Ens Marrakech 2021</div>
                     <div class="col-lg-4 my-3 my-lg-0">
                         <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
                         <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
@@ -115,11 +119,14 @@
                                     <h2 class="text-uppercase"><?php echo $fetch['type'] ?></h2>
                                     <img class="img-fluid d-block mx-auto" src="assets/img/chambres/<?php echo $fetch['photo']?>" alt="" />
                                     <p><?php echo $fetch['description'] ?></p>
+                                    <p>Nombres de chambres restantes: <?php echo $fetch['nb_chambres'] ?></p>
                                     <ul class="list-inline">                                       
                                         <li>Nombre de personnes: 2</li>
                                         <li>Balcon: Oui</li>
                                     </ul>
-                                    
+                                    <?php
+                                        if($fetch['nb_chambres'] > 0){
+                                    ?>
                                     <button class="btn btn-success"  type="button" onClick=
                                     <?php
                                         $id_chamb = $fetch['id_chambre'];
@@ -130,6 +137,22 @@
                                         <i class="fas fa-times mr-1"></i>
                                         Reserver
                                     </button>
+                                    <?php
+                                        }else{
+                                    ?>
+                                    <button class="btn btn-success" disabled  type="button" onClick=
+                                    <?php
+                                        $id_chamb = $fetch['id_chambre'];
+                                        if(isset($_SESSION['id']))
+                                        {echo "document.location.href='reservation.php?id_chambre=$id_chamb'";}
+                                        else{echo "document.location.href='login.php?conn=non'";}
+                                    ?>>
+                                        <i class="fas fa-times mr-1"></i>
+                                        Reserver
+                                    </button>
+                                    <?php
+                                        }
+                                    ?>
                                     <button class="btn btn-danger" data-dismiss="modal" type="button">
                                         <i class="fas fa-times mr-1"></i>
                                         Fermer

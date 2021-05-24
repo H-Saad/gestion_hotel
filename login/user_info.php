@@ -16,6 +16,7 @@
     <body id="page-top">
         <?php 
             require_once "../admin/connect.php";
+            require "admin/check.php";
             session_start(); 
         ?>
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-shrink" id="mainNav">

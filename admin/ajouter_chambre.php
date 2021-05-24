@@ -1,7 +1,4 @@
 <!DOCTYPE html>
-<?php
-	require_once 'valider.php';
-?>
 <html lang = "en">
 	<head>
 		<title>Ajouter une chambre</title>
@@ -15,6 +12,7 @@
         <?php 
             require_once "valider.php";
             require_once "connect.php";
+			require "check.php";
         ?>
       <nav class="navbar navbar-inverse">
             <div class="container-fluid">
@@ -46,6 +44,10 @@
 						<div class = "form-group">
 							<label>Prix: </label>
 							<input type = "number" class = "form-control" name = "prix" />
+						</div>
+						<div class = "form-group">
+							<label>Nb de chambres totals: </label>
+							<input type = "number" class = "form-control" name = "nb_chambres" />
 						</div>
                         <div class="form-group">
                             <label>Description: </label>

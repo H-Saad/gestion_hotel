@@ -9,6 +9,11 @@ $(function() {
             required: true,
             minlength: 5
         },
+        passwordc: {
+          required: true,
+          minlength: 5,
+          equalTo: "#pwd"
+        },
         email: {
           required: true,
           email: true
@@ -22,6 +27,11 @@ $(function() {
         password: {
           required: "Entrer un mot de passe",
           minlength: "Mot de passe doit etre plus de 4 caracteres"
+        },
+        passwordc: {
+          required: "Repetez votre mot de passe",
+          minlength: "Mot de passe doit etre plus de 4 caracteres",
+          equalTo: "Les mots de passes ne sont pas similaires."
         },
         username:{
             minlength: "Doit etre plus de 4 caracteres",

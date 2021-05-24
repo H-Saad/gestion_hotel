@@ -1,7 +1,4 @@
 <!DOCTYPE html>
-<?php
-	require_once 'valider.php';
-?>
 <html lang = "en">
 	<head>
 		<title>Ajouter une chambre</title>
@@ -40,16 +37,20 @@
 				<div class = "col-md-4">	
                 <form method = "POST" enctype = "multipart/form-data">
                     <div class="form-group">
-                    <label for="Nom">Nom d'utilisateur:</label>
+                    <label for="usrn">Nom d'utilisateur:</label>
                     <input type="text" class="form-control" name="username">
                     </div>
                     <div class="form-group">
-                    <label for="prenom">Mot de passe:</label>
+                    <label for="password">Mot de passe:</label>
                     <input type="password" class="form-control" name="password" required>
                     </div>
                     <div class="form-group">
                     <label for="Nom">Nom:</label>
                     <input type="text" class="form-control" name="nom">
+                    </div>
+					<div class="form-group">
+                    <label for="Prenom">Prenom:</label>
+                    <input type="text" class="form-control" name="prenom">
                     </div>
                     <div class="form-group">
                     <button type="ajouter_admin" name="modifier_compte" class="btn btn-success">Confirmer</button>

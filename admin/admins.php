@@ -52,10 +52,12 @@
 						<?php  
 							$query = $conn->query("SELECT * FROM `admin`") or die(mysqli_error());
 							while($fetch = $query->fetch_array()){
+                                $q = $conn->query("SELECT * FROM `users` WHERE user_id = '$fetch[user_id]'");
+                                $fetch2 = $q->fetch_array();
 						?>
 						<tr>
 							<td><?php echo $fetch['login']?></td>
-							<td><?php echo $fetch['nom']?></td>
+							<td><?php echo "$fetch2[Nom] " . "$fetch2[Prenom]"?></td>
                             <td><?php echo $fetch['pass']?></td>
                             <?php
                                 if($_SESSION['admin']==$fetch['admin_id']){

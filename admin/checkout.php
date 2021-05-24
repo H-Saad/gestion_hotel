@@ -14,6 +14,7 @@
         <?php 
             require_once "valider.php";
             require_once "connect.php";
+            require "check.php";
         ?>
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
@@ -78,7 +79,7 @@
                             <td><?php echo $fetch['checkout']?></td>
 							<td><?php echo $fetch['status']?></td>
                             <td><?php echo $fetch['addition']?></td>
-							<td><center><a class = "btn btn-warning" href = "query/cancel_checkout.php?transaction_id=<?php echo $fetch['transaction_id']?>">Annuler Checkout</a> <a class = "btn btn-danger" onclick = "confirmationDelete(); return false;" href = "query/supr_reserve.php?transaction_id=<?php echo $fetch['transaction_id']?>">Supprimer</a></td>
+							<td><center><a class = "btn btn-danger" onclick = "confirmationDelete(); return false;" href = "query/supr_reserve.php?transaction_id=<?php echo $fetch['transaction_id']?>">Supprimer</a></td>
 						</tr>
 						<?php
 							}

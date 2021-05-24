@@ -36,7 +36,7 @@
 			<div class = "panel-body">
 				<div class = "alert alert-info">Modifier compte</div>
 				<?php
-					$query = $conn->query("SELECT * FROM `admin` WHERE `admin_id` = '$_SESSION[admin]'") or die(mysqli_error());
+					$query = $conn->query("SELECT * FROM `admin` JOIN `users` WHERE `admin_id` = '$_SESSION[admin]'") or die(mysqli_error());
 					$fetch = $query->fetch_array();
 				?>
 				<br />
@@ -53,7 +53,11 @@
                         </div>
                         <div class="form-group">
                         <label for="Nom">Nom:</label>
-                        <input type="text" class="form-control" name="nom" value="<?php echo $fetch['nom']; ?>" >
+                        <input type="text" class="form-control" name="nom" value="<?php echo $fetch['Nom']; ?>" >
+                        </div>
+                        <div class="form-group">
+                        <label for="Nom">Prenom:</label>
+                        <input type="text" class="form-control" name="prenom" value="<?php echo $fetch['Prenom']; ?>" >
                         </div>
                         <div class="form-group">
                         <button type="submit" name="modifier_compte" class="btn btn-success">Confirmer</button>

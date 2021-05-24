@@ -12,7 +12,11 @@
         <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
         <link href="css/styles.css" rel="stylesheet" />
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     </head>
+    <?php
+        require_once "admin/connect.php";
+    ?>
     <body id="page-top">
         <?php session_start(); ?>
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
@@ -57,8 +61,22 @@
                 echo "<p style='color:red;'>Veuillez vous connecter!</p>";
                 echo "<br>";
             }
+            if(isset($_GET['error'])){
+                if($_GET['error']=='1'){
+                    echo "<p style = 'color:red;'>Robot verification failed, please try again.</p>";
+                    echo "<br>";
+                }
+                if($_GET['error']=='2'){
+                    echo "<p style = 'color:red;'>Please check on the reCAPTCHA box</p>";
+                    echo "<br>";
+                }
+                if($_GET['error']=='invalid'){
+                    echo "<p style = 'color:red;'>Username ou password incorrect!</p>";
+                    echo "<br>";
+                }
+            }
         ?>
-        <form method = "POST" enctype = "multipart/form-data" action="login/log.php">
+        <form method = "POST" enctype = "multipart/form-data" >
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
             <div class="form-group">
             <label for="Nom">Nom d'utilisateur:</label>
@@ -68,24 +86,22 @@
             <label for="prenom">Mot de passe:</label>
             <input type="password" class="form-control" id="password" name="password" required>
             </div>
+            <div class="g-recaptcha" data-sitekey="6LeyNuoaAAAAAGlb4U9ui5HKetehrNC9Nys8oEdE"></div>
+            <br>
             <button type="submit" name="submit" class="btn btn-success">Connection</button>
         </form>
+            <?php
+                require_once "login/log.php";
+            ?>
             <br>
             <p>Pas de compte? Inscrivez vous!</p>
             <button onclick="window.location = 'register.php'" class="btn btn-warning">Inscription</button>
-            <?php
-                if(isset($_GET['error'])){
-                    if($_GET['error']=='invalid'){
-                        echo '<script>alert("Username ou password incorrect!")</script>';
-                    }
-                }
-		    ?>
 </div>
 </section>
  <footer class="footer py-4">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-lg-4 text-lg-left">Copyright © Ens Marrakech 2020</div>
+                    <div class="col-lg-4 text-lg-left">Copyright © Ens Marrakech 2021</div>
                     <div class="col-lg-4 my-3 my-lg-0">
                         <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
                         <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>

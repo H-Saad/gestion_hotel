@@ -12,7 +12,11 @@
         <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
         <link href="css/styles.css" rel="stylesheet" />
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     </head>
+    <?php
+        require_once "admin/connect.php";
+    ?>
     <body id="page-top">
         <?php session_start(); ?>
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
@@ -50,21 +54,33 @@
         <div class="container">
             <?php
                 if(isset($_GET['error'])){
-                    if($_GET['error']=='exists'){
+                    if($_GET['error']=='1'){
                         echo "<p style = 'color:red;'>Nom d'utilisateur existe deja!</p>";
+                        echo "<br>";
+                    }
+                    if($_GET['error']=='2'){
+                        echo "<p style = 'color:red;'>Robot verification failed, please try again.</p>";
+                        echo "<br>";
+                    }
+                    if($_GET['error']=='3'){
+                        echo "<p style = 'color:red;'>Please check on the reCAPTCHA box</p>";
                         echo "<br>";
                     }
                 }
 		    ?>
-        <form name="reg" method = "POST" enctype = "multipart/form-data" action="login/reg.php">
+        <form name="reg" method = "POST" enctype = "multipart/form-data">
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
             <div class="form-group">
             <label for="username">Nom d'utilisateur:</label>
-            <input type="text" class="form-control" id="username" name="username" placeholder="Entrer votre nom d'utilisateur" required>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Entrer votre nom d'utilisateur" value="<?php if(isset($_POST['submit'])){echo $_POST['username'];}?>" required>
             </div>
             <div class="form-group">
             <label for="prenom">Mot de passe:</label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="Entrer votre mot de passe" required>
+            <input type="password" class="form-control" id="pwd" name="password" placeholder="Entrer votre mot de passe" required>
+            </div>
+            <div class="form-group">
+            <label for="prenom">Confirmez votre mot de passe:</label>
+            <input type="password" class="form-control" id="passwordc" name="passwordc" placeholder="Confirmez votre mot de passe" required>
             </div>
             <div class="form-group">
             <label for="Nom">Nom:</label>
@@ -86,15 +102,21 @@
             <label for="email">Email:</label>
             <input type="email" class="form-control" id="email" placeholder="Entrer votre email" name="email" value="<?php if(isset($_POST['submit'])){echo $_POST['email'];}?>" required>
             </div>
+            <div class="g-recaptcha" data-sitekey="6LeyNuoaAAAAAGlb4U9ui5HKetehrNC9Nys8oEdE"></div>
+            <br>
             <button type="submit" name="submit" class="btn btn-success">S'inscrire</button>
             <button type="reset" class="btn btn-danger">Effacer</button>
         </form>
+        <?php
+            require_once "admin/connect.php";
+            require_once "login/reg.php";
+        ?>
 </div>
 </section>
  <footer class="footer py-4">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-lg-4 text-lg-left">Copyright © Ens Marrakech 2020</div>
+                    <div class="col-lg-4 text-lg-left">Copyright © Ens Marrakech 2021</div>
                     <div class="col-lg-4 my-3 my-lg-0">
                         <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
                         <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>

@@ -14,6 +14,7 @@
         <?php 
             require_once "valider.php";
             require_once "connect.php";
+            require "check.php";
         ?>
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
@@ -45,6 +46,8 @@
 							<th>Prix</th>
 							<th>Photo</th>
 							<th>Description</th>
+                            <th>Nb total des chambres</th>
+                            <th>Nb de chambres restants</th>
                             <th>Action</th>
 						</tr>
 					</thead>
@@ -58,6 +61,8 @@
 							<td><?php echo $fetch['prix']?></td>
 							<td><center><img src = "../assets/img/chambres/<?php echo $fetch['photo']?>" height = "50" width = "50"/></center></td>
                             <td style="width: 33%;"><?php echo $fetch['description'];?></td>
+                            <td><?php echo $fetch['nb_chambres_total'];?></td>
+                            <td><?php echo $fetch['nb_chambres'];?></td>
 							<td><center><a class = "btn btn-warning" href = "modifier_chambre.php?id_chambre=<?php echo $fetch['id_chambre']?>">Modifier</a> 
                             <a class = "btn btn-danger" onclick = "confirmationDelete(this); return false;" href = "query/supprimer_chambre.php?id_chambre=<?php echo $fetch['id_chambre']?>">Supprimer</a></center>
                         </td>

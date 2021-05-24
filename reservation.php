@@ -13,6 +13,10 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
         <link href="css/styles.css" rel="stylesheet" />
     </head>
+    <?php
+        require_once "admin/connect.php";
+        require "admin/check.php";
+    ?>
     <body id="page-top">
         <?php session_start(); ?>
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
@@ -104,7 +108,7 @@
  <footer class="footer py-4">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-lg-4 text-lg-left">Copyright © Ens Marrakech 2020</div>
+                    <div class="col-lg-4 text-lg-left">Copyright © Ens Marrakech 2021</div>
                     <div class="col-lg-4 my-3 my-lg-0">
                         <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
                         <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
