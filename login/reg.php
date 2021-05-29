@@ -20,7 +20,9 @@
                     $query2 = $conn->query("SELECT * FROM `admin` WHERE `login` = '$username'") or die(mysqli_error($conn));
                     if(mysqli_num_rows($query)==0 && mysqli_num_rows($query2)==0){
                         $conn->query("INSERT INTO `users` (username,password,nom, prenom, adresse, email, num) VALUES('$username','$password','$nom', '$prenom', '$adresse', '$email', '$num')") or die(mysqli_error());
-                        header("Location: ../login.php?succes=yes");
+                        echo "<SCRIPT>
+                            window.location.replace('login.php?succes=yes');
+                        </SCRIPT>";
                     }
                     else{
                         echo "<SCRIPT>
